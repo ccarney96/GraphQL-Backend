@@ -1,0 +1,51 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+    subscription: Subscription
+}
+
+type Mutation {
+    addScenario(name: String, playCount: Int, routineId: Int): Scenario
+    createRoutine(description: String, name: String): Routine
+    deleteRoutine(id: ID): Routine
+    deleteScenario(id: Int): Scenario
+    updateRoutine(description: String, id: ID, name: String): Routine
+    updateScenario(id: ID, name: String, playCount: Int): Scenario
+}
+
+type Query {
+    findRoutine(searchQuery: String): [Routine]
+    routine(id: ID): Routine
+    routines(filter: RoutineFilterInput, first: Int, input: RoutineInput, offset: Int): [Routine]
+}
+
+type Routine {
+    author: String!
+    description: String!
+    id: ID
+    name: String!
+    scenarios: [Scenario]
+}
+
+type Scenario {
+    id: ID
+    name: String!
+    playCount: Int!
+}
+
+type Subscription {
+    routineAdded: Routine
+    scenarioAdded: Scenario
+}
+
+input RoutineFilterInput {
+    author: String
+    name: String
+}
+
+input RoutineInput {
+    author: String
+    name: String
+}
